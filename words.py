@@ -1,15 +1,16 @@
 import random
 
 LETTERS = 'bcdfghjklmnprstvwxzaeiou'
-lettersUpper = 'BCDFGHJKLMNPRSTVWXZAEIOU'
+LETTERSUPPER = 'BCDFGHJKLMNPRSTVWXZAEIOU'
 SYMBOLS = '!@#$%^&*()?/":;+-§№'
-digits  = '1234567890'
-letters = list(LETTERS)
-lettersUpper = list(lettersUpper)
-symbols = list(SYMBOLS)
-digits = list(digits)
+DIGITS  = '1234567890'
+LETTERS = list(LETTERS)
+LETTERSUPPER = list(LETTERSUPPER)
+SYMBOLS = list(SYMBOLS)
+DIGITS = list(DIGITS)
 DEFAULT_PASS_LENGTH = 8
 DEFAULT_PASS_NUMBER = 1
+all_symbols = LETTERS + LETTERSUPPER + SYMBOLS + DIGITS
 
 
 def convert_input_to_int(input_data, default_value):
@@ -22,17 +23,15 @@ def convert_input_to_int(input_data, default_value):
         return int(input_data)
 
 
+def pass_generator(quant, length):
+    for i in range(quant):
+        password = ''
+        for j in range(length):
+            password += random.choice(all_symbols)
+        print(password)
 
 pass_quant = convert_input_to_int(input("Please enter the quantity of the passwords: "), DEFAULT_PASS_NUMBER)
 
 pass_length = convert_input_to_int(input("And what's the length of the password: "), DEFAULT_PASS_LENGTH)
 
-
-
-all_symbols = letters + lettersUpper + symbols + digits
-
-for i in range(pass_quant):
-    password = ''
-    for j in range(pass_length):
-        password += random.choice(all_symbols)
-    print(password)
+pass_generator(pass_quant, pass_length)
